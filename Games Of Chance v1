@@ -1,0 +1,92 @@
+import random
+
+money = 100
+
+    ##Coin Toss simulator
+def coin_toss(guess, bet):
+  coin = random.choice(['heads', 'tails'])
+  global money
+  print(coin)
+  if guess == coin:
+    money += bet
+    print("good guess you now have "+str(money)+"!")
+  elif guess != coin:
+    money -= bet
+    print("unlucky you now have "+str(money)+" left")
+
+    ## Cho Han Simulator
+def Cho_Han(guess, bet):
+  global money
+  die1 = random.randint(1, 6)
+  die2 = random.randint(1, 6)
+  result = die1 + die2
+  print("SHHHHAKLAKI! The dice rolled are "+str(result)+"!")
+  if result % 2 == 0:
+    result = "even"
+    print("the dice rolled an even number")
+  else:
+    result = "odd"
+    print("the dice rolled an odd number")
+  if guess == result:
+    money += bet
+    print("You guessed correctly and now have:")
+    print(money)
+  elif guess != result:
+    money -= bet
+    print("You guessed incorrectly sorry! You now have:")
+    print(money)
+
+    ##higher or lower simulator V0.1
+def higher_lower(bet):
+  global money
+  if bet > money :
+    print("umm you don't have enough for that bet...sausage")
+  elif bet <= 0 :
+    print("Betting doesn't work like that mate")
+  else:
+    c = list(range(1, 14))
+    h = list(range(1, 14))
+    d = list(range(1, 14))
+    s = list(range(1, 14))
+    deck = c + h + d + s
+    your_card = random.choice(deck)
+    their_card = random.choice(deck)
+    print("you pulled out a "+str(your_card)+"!")
+    deck.remove(your_card)
+    print("they pulled out a "+str(their_card)+"!")
+    deck.remove(their_card)
+    if your_card < their_card :
+      money -= bet
+      print("Sorry they beat you! you now have")
+      print(str(money)+" left")
+    elif their_card < your_card :
+      money += bet
+      print("yes! Your card beat theirs, you now have")
+      print(str(money)+" left.")
+    else:
+      print("What are the chances! a draw! All bets are off")
+    
+    
+      ##roulette Simulator v0.3
+def roulette(pick, bet):
+  global money
+  if bet > money :
+    print("umm you don't have enough for that bet...sausage")
+  elif bet <= 0 :
+    print("Betting doesn't work like that mate")
+  else:
+    wheel = list(range(37)) + [00]
+    result = random.choice(wheel)
+    print("The ball landed on "+str(result)+"!")
+    if result == pick:
+      money += (bet * 35)
+      print(money)
+    elif (result != 0) and (result % 2 == 0) and (pick == "even"):
+      money += (bet * 2)
+      print(money)
+    elif (result != 0) and (result % 2 > 0) and (pick == "odd"):
+      money += (bet * 2)
+      print(money)
+    else:
+      money -= bet
+      print(money)
